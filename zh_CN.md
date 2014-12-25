@@ -2,7 +2,7 @@
 
 本文尚未完成。
 
-本文**不**适用于初学者，适合了解 Git 的基本使用，知道 commit、push、pull，希望掌握 Git 更多功能的人阅读。你可以以任何顺序阅读，或者作为一个手册，在遇到问题的时候查询。如果你遇到没有涉及的问题，欢迎[新建 issue](https://github.com/xhacker/GitProTips/issues) 反馈。我会持续扩充本文。
+本文**不**适用于初学者，适合了解 Git 的基本使用，知道 commit、push、pull，希望掌握 Git 更多功能的人阅读。你可以以任何顺序阅读，或者作为一个手册，在遇到问题的时候查询。如果你遇到没有涉及的问题，欢迎 [新建 issue](https://github.com/xhacker/GitProTips/issues) 反馈。我会持续扩充本文。
 
 ## Commit
 
@@ -18,7 +18,24 @@ git commit --author "Xhacker <liu.dongyuan@gmail.com>"
 ```
 committer vs. author
 
-### Commit log 应该怎么写？
+### Commit message 应该怎么写？
+Commit message 应简短、清晰地描述这个 commit 中做了什么。如果所有协作者都能阅读中文，则可以使用中文。
+
+正确示例：
+
+> Fixed table view cell text overflow
+
+<!-- -->
+> 修复了内存泄漏的问题
+
+错误示例：
+
+> fix some bugs
+
+<!-- -->
+> 修改文件
+
+同时，如果你使用 GitHub 管理代码，还可以通过 commit message 关闭 issue，详见 /* TODO: 链接 */。
 
 ### 如何将修改追加到上一个 commit？
 ```shell
