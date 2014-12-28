@@ -1,5 +1,5 @@
-GitProTips
-==========
+Git Pro Tips
+============
 
 * [English version](en.md)
 * [简体中文版](zh_CN.md)
