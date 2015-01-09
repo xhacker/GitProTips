@@ -16,7 +16,17 @@ git config --global user.email "liu.dongyuan@gmail.com"
 ```shell
 git commit --author "Xhacker <liu.dongyuan@gmail.com>"
 ```
-committer vs. author
+
+或
+
+```shell
+GIT_COMMITTER_NAME="Xhacker" GIT_COMMITTER_EMAIL="liu.dongyuan@gmail.com" git commit --author "Xhacker <liu.dongyuan@gmail.com>"
+```
+两者有什么区别呢？事实上，Git 中有两个关于作者的信息，`committer` 和 `author`。第一条命令将使用 ``Xhacker <liu.dongyuan@gmail.com>`` 作为 commit 的 `author`，第二条命令则同时设置 `committer` 和 `author`。
+
+关于 `committer` 和 `author` 的区别，[Pro Git 2.3 章](http://git-scm.com/book/zh/v1/Git-基础-查看提交历史) 中提到：
+
+> 你一定奇怪作者（author）和提交者（committer）之间究竟有何差别，其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。我们会在第五章再详细介绍两者之间的细微差别。
 
 ### Commit message 应该怎么写？
 Commit message 应简短、清晰地描述这个 commit 中做了什么。如果所有协作者都能阅读中文，则可以使用中文。
