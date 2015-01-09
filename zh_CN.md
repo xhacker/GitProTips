@@ -48,11 +48,21 @@ Commit message 应简短、清晰地描述这个 commit 中做了什么。如果
 同时，如果你使用 GitHub 管理代码，还可以通过 commit message 关闭 issue，详见 /* TODO: 链接 */。
 
 ### 如何将修改追加到上一个 commit？
+假设你发现刚刚完成的 commit 中有一处错误，你一定希望把修改追加到上一个 commit 中，而不是创建一个新的 commit。很简单，只需要用 `--amend`：
+
 ```shell
 git commit --amend
+```
+
+在 amend 之后，commit 的时间是不会变的。如果你想更新一下 commit 时间，可以用
+
+```shell
 git commit --amend --reset-author
 ```
-already pushed?
+
+需要注意的是，amend 实际上修改了上一个 commit。所以如果已经 push 了上一个 commit，请尽量不要 amend。
+
+如果一定要 amend 已经 push 了的 commit，**请确保这个 commit 所在的 branch 只有你一个人使用**（否则会给其他人带来灾难），然后在 amend 之后使用 `git push --force`。
 
 ### 如何 commit 文件的一部分？
 ```shell
