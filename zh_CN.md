@@ -33,14 +33,14 @@ Commit message 应简短、清晰地描述这个 commit 中做了什么。如果
 
 正确示例：
 
-> Fixed table view cell text overflow
+> Fix table view cell text overflow
 
 <!-- -->
 > 修复了内存泄漏的问题
 
 错误示例：
 
-> fix some bugs
+> fixed some bugs
 
 <!-- -->
 > 修改文件
