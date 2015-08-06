@@ -141,6 +141,9 @@ git show HEAD~3
 git show deadbeef
 ```
 
+### HEAD~3 是什么意思？
+`HEAD` 是指向当前顶部 commit 的指针，`HEAD~3` 就是向前数三个的 commit，即倒数第四个 commit。
+
 ### Commit 的 hash 到底有多长？
 Git commit 的 hash 是对 commit 内容的 SHA-1 checksum，通常用 40 位 16 进制数表示，比如 `a502950cd563f2ed210d6610bf5d82f72827ea19`。然而，只要没有冲突，你通常可以用一个比较短的前缀来表示一个 commit。比如 `git show a50295`，`git checkout a50295`。
 
@@ -212,6 +215,9 @@ git checkout -
 
 是不是和 `cd -` 有点像？
 
+### 到底什么是 branch？什么又是 HEAD？
+Branch 的实质是指向某个 commit 的指针。HEAD 的实质也是一个指针，指向当前工作目录所处的 commit。所以，`git checkout <branchname>` 做的事情就是让 HEAD 指向 `branchname`。
+
 ### 如何应用其他 branch 的某个 commit？
 假如你在某个 branch 做了一大堆 commit，而在另一个 branch 想应用其中的一个，可以：
 
@@ -219,10 +225,20 @@ git checkout -
 git cherry-pick <commit SHA>
 ```
 
-### merge 和 rebase 有什么区别？
+### 如何 merge 一个 branch？
+你在一个 feature branch 上实现了一些功能，想合并回主分支时：
 
-### 到底什么是 branch？什么又是 HEAD？
-Branch 的实质是指向某个 commit 的指针。HEAD 的实质也是一个指针，指向当前工作目录所处的 commit。所以，`git checkout <branchname>` 做的事情就是让 HEAD 指向 `branchname`。
+```shell
+# 确保当前处于主分支
+git checkout master
+
+# 合并 feature branch，禁止 fast forward
+git merge --no-ff <feature branch>
+```
+
+### 什么是 fast forward？
+
+### merge 和 rebase 有什么区别？
 
 ### 如何查看所有已经被 merge 的 branch？如何删除它们？
 ```shell
@@ -339,3 +355,8 @@ git biselect
 [color]
     ui = on
 ```
+
+### TODO
+
+* stash
+* assume
