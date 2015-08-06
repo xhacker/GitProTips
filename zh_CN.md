@@ -28,6 +28,16 @@ GIT_COMMITTER_NAME="Xhacker" GIT_COMMITTER_EMAIL="liu.dongyuan@gmail.com" git co
 
 > 你一定奇怪作者（author）和提交者（committer）之间究竟有何差别，其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。我们会在第五章再详细介绍两者之间的细微差别。
 
+### 如何针对每个 repo 单独设定姓名和 email？
+有时，你可能想为不同的 repo（比如公司的项目和个人项目）设置不同的 committer 信息，很简单：
+
+```shell
+git config user.name "Dongyuan Liu"
+git config user.email "xhacker@ela.build"
+```
+
+可以看出，在使用 `git config` 时，默认修改的是当前 repo 的配置，如果添加 `--global` 则会修改全局的配置。
+
 ### Commit message 应该怎么写？
 Commit message 应简短、清晰地描述这个 commit 中做了什么。如果所有协作者都能阅读中文，则可以使用中文。
 
@@ -140,7 +150,7 @@ Git commit 的 hash 是对 commit 内容的 SHA-1 checksum，通常用 40 位 16
 ```shell
 git push <remotename> <commit SHA>:<remotebranchname>
 
-# 比如你想 push 9790eff 之前的所有 commit 到 master
+# push 9790eff 之前的所有 commit 到 master
 git push origin 9790eff:master
 ```
 
@@ -154,11 +164,25 @@ git add output/.keep
 ```
 
 ### 如何忽略文件？
-.gitignore
+在项目根目录建立 `.gitignore` 可以忽略文件：
 
-### 什么文件应该 commit，什么文件不应该？
+```ini
+# 忽略所有名为 .DS_Store 的文件
+.DS_Store
+
+# 忽略所有扩展名为 .o 的文件
+*.o
+```
+
+`.gitignore` 中还支持很多其他语法，具体可以参见 [gitignore 文档](http://git-scm.com/docs/gitignore)。
+
+### 什么文件应该忽略，什么文件不应该？
+
+一般来说，临时文件和后期生成的文件应该忽略掉。比如 OS X 上的 `.DS_Store`、Windows 上的 `Thumbs.db`、C 语言项目中的 `*.o` 等等。在 GitHub 新建项目时，可以选择自动添加合适的 `.gitignore`。
 
 ### 如何仅在本地忽略文件？
+
+有时你想忽略一些自己的文件，却不想污染 repo 中的 `.gitignore`，也可以修改 `.git/info/exclude` 文件。语法和 `.gitignore` 一样。
 
 ## Branch
 
