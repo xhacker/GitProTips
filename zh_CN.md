@@ -101,7 +101,7 @@ Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]?
 按 `y`/`n` 来选择是否 commit 这块修改，`?` 可以查看其他操作的说明。
 
 ### 什么是 stage？
-在 Git 中，有一个 staging area 的概念，你可以理解为一个暂存区。在运行 `git commit` 时，只有在 staging area 里的修改会被 commit。在工程量比较大时，staging area 可以帮助你提交一部分修改。通过 `git add 文件名` 可以 stage 一个文件；`git add -p` 可以 stage 文件的一部分，用法和之前介绍的 `git commit -p` 类似。
+在 Git 中，有一个 staging area 的概念，你可以理解为一个暂存区。在运行 `git commit` 时，只有在 staging area 里的修改会被 commit。在工程量比较大时，staging area 可以帮助你提交一部分修改。通过 `git add <filename>` 可以 stage 一个文件；`git add -p` 可以 stage 文件的一部分，用法和之前介绍的 `git commit -p` 类似。
 
 ### 如何查看当前修改了哪些文件？
 通过 `git status`，你可以查看所有未提交文件的状态。最上面显示的是在 staging area，即将被 commit 的文件；中间显示没有 stage 的修改了的文件，最下面是新的还没有被 Git track 的文件：
@@ -187,8 +187,13 @@ git add output/.keep
 ## Branch
 
 ### 如何新建 branch？
+以下两种方式可以新建 branch：
+
 ```shell
+# 新建 branch
 git branch <branchname>
+
+# 新建并切换至该 branch（比较常用）
 git checkout -b <branchname>
 ```
 
@@ -200,25 +205,34 @@ git checkout -d <branchname>
 ### 如何切换到上一个 branch？
 ```shell
 git checkout <branchname>
+
+# 切换到上一个 branch
 git checkout -
 ```
 
+是不是和 `cd -` 有点像？
+
 ### 如何应用其他 branch 的某个 commit？
+假如你在某个 branch 做了一大堆 commit，而在另一个 branch 想应用其中的一个，可以：
+
 ```shell
-git cherry-pick 5130058
+git cherry-pick <commit SHA>
 ```
 
 ### merge 和 rebase 有什么区别？
 
-### 如何重置到某个 commit？
-```shell
-git reset HEAD~1
-```
+### 到底什么是 branch？什么又是 HEAD？
+Branch 的实质是指向某个 commit 的指针。HEAD 的实质也是一个指针，指向当前工作目录所处的 commit。所以，`git checkout <branchname>` 做的事情就是让 HEAD 指向 `branchname`。
 
-### 如何查看已经 merge 的 branch？
+### 如何查看所有已经被 merge 的 branch？如何删除它们？
 ```shell
+# 显示所有已经被 merge 的 branch
 git branch --merged
+
+# 显示所有还没被 merge 的 branch
 git branch --no-merged
+
+# 删除所有已经被 merge 的 branch
 git branch --merged | xargs git branch -d
 ```
 
@@ -232,6 +246,11 @@ git checkout -- <filepath>
 ### 如何重置所有文件到未修改的状态？
 ```shell
 git reset --hard
+```
+
+### 如何重置到某个 commit？
+```shell
+git reset HEAD~1
 ```
 
 ### 如何删除所有新增的文件？
