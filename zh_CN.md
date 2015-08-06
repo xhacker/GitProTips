@@ -69,32 +69,87 @@ git commit --amend --reset-author
 git commit -p
 ```
 
-### 什么是 stage？
+之后，Git 会对每块修改弹出一个提示，询问你是否 stage：
+```diff
+diff --git a/Source/Player.swift b/Source/Player.swift
+index af1cb7f..6ee0213 100644
+--- a/Source/Player.swift
++++ b/Source/Player.swift
+@@ -323,9 +323,7 @@ public class Player: UIViewController {
+     }
+ 
+     private func setupPlayerItem(playerItem: AVPlayerItem?) {
+-        let item = playerItem
+-
+-        if item == nil {
++        if self.playerItem != nil {
+             self.playerItem?.removeObserver(self, forKeyPath: PlayerEmptyBufferKey, context: &PlayerItemObserverContext)
+             self.playerItem?.removeObserver(self, forKeyPath: PlayerKeepUp, context: &PlayerItemObserverContext)
+             self.playerItem?.removeObserver(self, forKeyPath: PlayerStatusKey, context: &PlayerItemObserverContext)
+Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]?
+```
+按 `y`/`n` 来选择是否 commit 这块修改，`?` 可以查看其他操作的说明。
 
-### 如何查看修改了哪些文件？
-```shell
-git status
-git diff
-git diff --staged
+### 什么是 stage？
+在 Git 中，有一个 staging area 的概念，你可以理解为一个暂存区。在运行 `git commit` 时，只有在 staging area 里的修改会被 commit。在工程量比较大时，staging area 可以帮助你提交一部分修改。通过 `git add 文件名` 可以 stage 一个文件；`git add -p` 可以 stage 文件的一部分，用法和之前介绍的 `git commit -p` 类似。
+
+### 如何查看当前修改了哪些文件？
+通过 `git status`，你可以查看所有未提交文件的状态。最上面显示的是在 staging area，即将被 commit 的文件；中间显示没有 stage 的修改了的文件，最下面是新的还没有被 Git track 的文件：
+```
+On branch fix-kvo-crash
+Your branch is behind 'origin/fix-kvo-crash' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    modified:   Source/InboardHelper.swift
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   Source/InboardHelperDelegate.swift
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    SyncManager.swift
 ```
 
+`git diff` 可以查看当前没有 stage 的修改，`git diff --staged` 可以查看在 staging area 中的修改。
+
 ### 如何查看某个特定的 commit 修改了哪些文件？
+要查看某个 commit 的修改，可以用 `git show`：
 ```shell
+# 查看最后一个 commit 的修改
 git show
-git show HEAD~1
-git show 9790eff
+
+# 查看倒数第三个 commit 的修改
+git show HEAD~3
+
+# 查看 hash 为 deadbeef 的 commit 的修改
+git show deadbeef
 ```
 
 ### Commit 的 hash 到底有多长？
+Git commit 的 hash 是对 commit 内容的 SHA-1 checksum，通常用 40 位 16 进制数表示，比如 `a502950cd563f2ed210d6610bf5d82f72827ea19`。然而，只要没有冲突，你通常可以用一个比较短的前缀来表示一个 commit。比如 `git show a50295`，`git checkout a50295`。
 
 ### 如何 push 一部分 commit？
+有时你在本地做了很多个 commit，却只想 push 其中的前几个，这时只要：
+
 ```shell
 git push <remotename> <commit SHA>:<remotebranchname>
+
+# 比如你想 push 9790eff 之前的所有 commit 到 master
 git push origin 9790eff:master
 ```
 
 ### 如何 commit 一个空目录？
+Git 本身不支持 track 空目录。然而，你可以建一个空的隐藏文件来解决这个问题。比如，要想 commit 一个空的 output 目录，可以：
+
 ```shell
+mkdir output
+touch output/.keep
 git add output/.keep
 ```
 
