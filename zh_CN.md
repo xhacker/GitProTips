@@ -202,7 +202,7 @@ git checkout -b <branchname>
 
 ### 如何删除 branch？
 ```shell
-git checkout -d <branchname>
+git branch -d <branchname>
 ```
 
 ### 如何切换到上一个 branch？
