@@ -310,6 +310,14 @@ git rebase origin/master
 ```
 
 ### 如何用 commit 关闭 GitHub issue？
+GitHub 支持通过 commit 自动关闭 issue。你只需在 commit message 中包含 `close`、`fix` 等字样即可，详见 [Closing issues via commit messages](https://help.github.com/articles/closing-issues-via-commit-messages/)。
+
+比如以下两条都可以关闭 42 号 issue：
+
+> [Fix #42] Fix table view cell text overflow
+
+<!-- -->
+> Fix table view cell text overflow, close #42
 
 ### 如何给开源项目提交 pull request？
 
