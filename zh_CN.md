@@ -265,16 +265,38 @@ git reset --hard
 ```
 
 ### 如何重置到某个 commit？
+
+```shell
+git reset <commit SHA>
+```
+
+比如，如果希望将当前 branch 重置为倒数第二个 commit（即丢弃最后一个 commit）：
+
 ```shell
 git reset HEAD~1
 ```
 
+`git reset` 有三个参数可以选择，`--soft`、`--mixed`和`--hard`。（TODO）
+
 ### 如何删除所有新增的文件？
 
 ### 如何还原某个 commit？
+
 ```shell
-git revert
+git revert <commit SHA>
 ```
+
+你可能会问，还原和重置有什么区别？还原（revert）的实质是产生一个新的 commit，内容和要还原的 commit 完全相反。比如，`A` commit 在 `main.c` 中增加了三行，revert `A` 产生的 commit 就会删除这三行。如果我们非常确定之前的某个 commit 产生了 bug，最好的办法就是 revert 它。
+
+`git revert` 后 git 会提示你写一些 commit message，此处最好简单描述为什么要还原，比如：
+
+```
+Revert "Use DDT to kill insects" because it has so many side effects
+
+This reverts commit 4281ac1c58e21194b80a327af93d47c5fefb786f.
+```
+
+而重置（reset）会修改历史，常用于还没有 push 的本地 commits。
 
 ### 如何修改最后一个 commit？
 ```shell
