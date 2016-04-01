@@ -39,7 +39,7 @@ git config user.email "xhacker@ela.build"
 可以看出，在使用 `git config` 时，默认修改的是当前 repo 的配置，如果添加 `--global` 则会修改全局的配置。
 
 ### Commit message 应该怎么写？
-Commit message 应简短、清晰地描述这个 commit 中做了什么。如果所有协作者都能阅读中文，则可以使用中文。
+Commit message 应简短、清晰地描述这个 commit 中做了什么。如果所有协作者都能阅读中文，则可以使用中文。若使用英文，请使用**一般现在时**。
 
 正确示例：
 
@@ -55,7 +55,9 @@ Commit message 应简短、清晰地描述这个 commit 中做了什么。如果
 <!-- -->
 > 修改文件
 
-同时，如果你使用 GitHub 管理代码，还可以通过 commit message 关闭 issue，详见 /* TODO: 链接 */。
+同时，如果你使用 GitHub 管理代码，还可以通过 commit message 关闭 issue（[官方说明](https://help.github.com/articles/closing-issues-via-commit-messages/)），比如：
+
+> [Close #40] Send Dribbble shots from XPC service in batches
 
 ### 如何将修改追加到上一个 commit？
 假设你发现刚刚完成的 commit 中有一处错误，你一定希望把修改追加到上一个 commit 中，而不是创建一个新的 commit。很简单，只需要用 `--amend`：
