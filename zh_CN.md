@@ -366,10 +366,9 @@ git biselect
 
 关于 CLI 和 GUI 哪个好有很多争论。我的观点是，对于 Git 来说，一个好用的 GUI 客户端配合 CLI 是最为高效的。在 push 之前，一个好习惯是仔细检查 commit 的内容，而图形界面能让你清晰地看到所有修改。再如如果你想 commit 文件的一部分，用客户端也比 `git add -p` 直观不少。
 
-* [GitHub for Mac](https://mac.github.com)（免费）：强烈推荐，功能不多，但设计非常合理。
-* [GitHub for Windows](https://windows.github.com)（免费）：和 GitHub for Mac 类似。
-* [SourceTree](https://www.sourcetreeapp.com)（免费）：功能丰富，有 Mac 和 Windows 版，如果觉得 GitHub 客户端不够用可以试试。我觉得 UI 有点乱。
-* [Tower](http://www.git-tower.com)（收费）：我现在正在用的客户端。虽然比较贵，但是功能丰富且非常顺手。
+* [GitHub Desktop](https://desktop.github.com)（免费）：支持 Mac 和 Windows。强烈推荐，功能不多，但设计非常合理。
+* [SourceTree](https://www.sourcetreeapp.com)（免费）：支持 Mac 和 Windows，功能丰富。如果觉得 GitHub 客户端不够用可以试试。我觉得 UI 有点乱。
+* [Tower](http://www.git-tower.com)（收费）：支持 Mac。我现在正在用的客户端。虽然比较贵，但是功能丰富且非常顺手。
 
 ### .gitconfig
 
