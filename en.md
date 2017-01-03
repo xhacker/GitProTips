@@ -252,7 +252,7 @@ For example, issue 42 can be closed by either of the following two commit messag
 ### I found a regression. How can I know which commit caused the bug?
 
 ```shell
-git biselect
+git bisect
 ```
 
 ## Appendix

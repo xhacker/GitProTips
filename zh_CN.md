@@ -351,7 +351,7 @@ GitHub 支持通过 commit 自动关闭 issue。你只需在 commit message 中�
 
 ### 发现了一个 bug，如何知道是哪个 commit 导致的？
 ```shell
-git biselect
+git bisect
 ```
 
 ### 如何让 Git 的命令更短？
